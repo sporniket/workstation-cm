@@ -1,0 +1,89 @@
+{
+    "_comment": "My condolences for all the copy-pasting in this file..",
+
+    "variables": {
+        "cpus": "2",
+        "memory_mb": "4096",
+        "vbox_videomem_mb": "256",
+        "vmware_videomem_kb": "786432"
+    },
+
+    "builders": [{
+        "type": "virtualbox-iso",
+        "guest_os_type": "Ubuntu_64",
+        "iso_url": "http://releases.ubuntu.com/18.04/ubuntu-18.04-desktop-amd64.iso",
+        "iso_checksum_url": "http://releases.ubuntu.com/18.04/MD5SUMS",
+        "iso_checksum_type": "md5",
+        "vboxmanage": [
+            ["modifyvm", "{{.Name}}",
+             "--cpus", "{{user `cpus`}}",
+             "--memory", "{{user `memory_mb`}}",
+             "--vram", "{{user `vbox_videomem_mb`}}"]
+        ],
+        "boot_wait": "5s",
+        "boot_command": [
+          "<bs><wait><bs><wait><bs><wait><bs><wait><bs><wait><enter><wait>",
+
+          "<f6><wait><enter><wait><esc><wait>",
+          "<down><wait>",
+          "time/zone=Europe/Paris<spacebar><wait>",
+          "<enter>",
+          "<wait10><wait10>",
+
+            "<wait10><tab><wait><enter><wait10>",
+
+            "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><enter><wait10>",
+            "<tab><wait><spacebar><tab><wait><tab><wait><tab><wait><tab><wait><enter><wait10>",
+            "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><enter><wait10>",
+            "<tab><wait><enter><wait10><wait10>",
+            "<tab><wait><tab><wait><enter><wait10>",
+            "Vagrant<tab><wait><tab><wait><tab><wait>vagrant<tab><wait>vagrant<tab><wait><up><wait><tab><wait><tab><wait><enter>",
+
+            "<wait10><wait10><wait10><wait10><wait10><wait10>",
+            "<wait10><wait10><wait10><wait10><wait10><wait10>",
+            "<wait10><wait10><wait10><wait10><wait10><wait10>",
+            "<wait10><wait10><wait10><wait10><wait10><wait10>",
+            "<wait10><wait10><wait10><wait10><wait10><wait10>",
+            "<wait10><wait10><wait10><wait10><wait10><wait10>",
+
+            "<enter><wait10><enter>",
+
+            "<wait10><wait10><wait10><wait10><wait10><wait10>",
+            "<leftCtrlOn><leftAltOn>t<leftAltOff><leftCtrlOff><wait10>",
+
+            "sudo<wait><spacebar><wait>-s<enter><wait>vagrant<wait><enter><wait10>",
+            "rm<wait><spacebar><wait>-Rf<wait><spacebar><wait>/etc<wait>/systemd<wait>/system<wait>/apt-*<wait><enter><wait10>",
+            "reboot<wait><enter>",
+
+            "<wait10><wait10><wait10><wait10><wait10><wait10>",
+            "<leftCtrlOn><leftAltOn>t<leftAltOff><leftCtrlOff><wait10>",
+            "sudo<wait><spacebar><wait>-s<enter><wait>vagrant<wait><enter><wait10>",
+            "apt-get<wait><spacebar><wait>install<wait><spacebar><wait>-y<spacebar><wait>openssh<wait>-server<wait><enter>",
+
+            "<wait10><wait10><wait10><wait10><wait10><wait10>",
+            ""
+        ],
+        "ssh_timeout": "1m",
+        "ssh_username": "vagrant",
+        "ssh_password": "vagrant",
+        "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    }],
+
+    "provisioners": [{
+        "type": "shell",
+        "only": ["virtualbox-iso"],
+        "script": "vbox/provision.sh",
+        "execute_command": "echo 'vagrant' | sudo -S sh -c '{{ .Vars }} {{ .Path }}'" },{
+
+        "type": "shell",
+        "script": "provision.sh",
+        "execute_command": "echo 'vagrant' | sudo -S sh -c '{{ .Vars }} {{ .Path }}'" }],
+
+    "post-processors": [{
+        "type": "vagrant",
+        "keep_input_artifact": true,
+        "override": {
+            "virtualbox": {"vagrantfile_template": "vbox/Vagrantfile"}
+        }
+    }]
+}
