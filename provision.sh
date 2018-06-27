@@ -26,9 +26,29 @@ echo '\nvagrant ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 apt-get update
 apt-get full-upgrade -y
 
-# Supplemental packages
-apt-get install -y wget curl git openjdk-8-jdk
+################################################################################
+# Workstation Customisation
+#
+# This process will install any publicly available ressource needed to
+# simplify the Vagrant provisionning
+################################################################################
 
+#-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
+# Network toolset
+apt-get install -y wget curl
+#-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
+# VCS toolset
+apt-get install -y git
+#-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
+# Java development toolset
+apt-get install -y openjdk-8-jdk
+#-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
+# Atom text editor
+add-apt-repository ppa:webupd8team/atom
+apt-get update
+apt-get install -y atom
+
+################################################################################
 
 # Delete stuff
 apt-get --purge autoremove
