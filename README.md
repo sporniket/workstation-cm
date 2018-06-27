@@ -10,7 +10,7 @@ Content
 4. Known issues
 5. Miscellanous
 
-##1. What is **workstation-cm**, and when to use it ?
+## 1. What is **workstation-cm**, and when to use it ?
 **workstation-cm** is a Packer script that create an automated workstation based on Ubuntu taylored to my needs.
 
 ### What's new in v0.2.0
@@ -31,14 +31,14 @@ Working script on my computer, will need tuning to work on another computer.
 * git
 * openjdk-8-jdk
 
-###Licence
+### Licence
  **workstation-cm** is public domain as it gathers some public knowledge.
 
  **workstation-cm** is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
  even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 
-##2. What should you know before using **workstation-cm** ?
+## 2. What should you know before using **workstation-cm** ?
 
 **workstation-cm** relies HashiCorp Packer to generate the box.
 
@@ -54,7 +54,7 @@ https://github.com/martinanderssondotcom/box-ubuntu-budgie-18-x64
 
 > Do not use **workstation-cm** if this project is not suitable for your project
 
-##3. How to use **workstation-cm** ?
+## 3. How to use **workstation-cm** ?
 
 ### Vagrant
 
@@ -72,13 +72,13 @@ To get the latest available code, one must clone the git repository, build and i
 
 > Note : I had use the following command : `PACKER_KEY_INTERVAL=300ms TMPDIR=/var/tmp packer build -force template.json`
 
-##4. Known issues
+## 4. Known issues
 
 See the [project issues](https://github.com/sporniket/workstation-cm/issues) page.
 
 The boot command sequence is timed after my setup : a Linux on SSD. Thus the timing are quite shorts. In the future, I plan to make these timing configurable to get an taylored script.
 
-##5. Miscellanous
+## 5. Miscellanous
 
 ### Report issues
 
