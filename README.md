@@ -13,10 +13,23 @@ Content
 ##1. What is **workstation-cm**, and when to use it ?
 **workstation-cm** is a Packer script that create an automated workstation based on Ubuntu taylored to my needs.
 
+### What's new in v0.2.0
+
+* #1 : Atom text editor.
+* #3 : French language pack and locale.
+* #4 : Default `.bash_aliases`.
+* #6 : nvm.
+* #7 : docker-ce and docker-compose.
+
 ### What's new in v0.1.0
 
-* Working script on my computer, will need tuning to work on another computer.
+Working script on my computer, will need tuning to work on another computer.
 
+* build-essential
+* wget
+* curl
+* git
+* openjdk-8-jdk
 
 ###Licence
  **workstation-cm** is public domain as it gathers some public knowledge.
@@ -57,7 +70,7 @@ To get the latest available code, one must clone the git repository, build and i
 	cd workstation-cm
 	packer build template.json
 
-> Note : I had use the following command : `PACKER_KEY_INTERVAL=300ms TMPDIR=/var/tmp packer build template.json`
+> Note : I had use the following command : `PACKER_KEY_INTERVAL=300ms TMPDIR=/var/tmp packer build -force template.json`
 
 ##4. Known issues
 
