@@ -34,6 +34,19 @@ apt-get full-upgrade -y
 ################################################################################
 
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
+# French support
+# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+#language pack
+apt-get install -y $(check-language-support -l fr)
+# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+#keyboard
+#setxkbmap fr
+#setxkbmap -layout fr -variant bepo
+# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+#locale
+locale-gen fr_FR.UTF-8
+update-locale LANG=fr_FR.UTF-8
+#-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 # Network toolset
 apt-get install -y wget curl
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
@@ -47,6 +60,74 @@ apt-get install -y openjdk-8-jdk
 add-apt-repository ppa:webupd8team/atom
 apt-get update
 apt-get install -y atom
+# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+# Preinstall packages
+apm install atom-beautify
+apm install editorconfig
+
+#put in user template
+cp -Rf ~/.atom /etc/skel
+#-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
+# Bash user default
+# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+echo '#Grant that there is a directory at ~/.bashrc.d/enabled
+if [ ! -d "~/.bashrc.d/enabled" ]; then
+  mkdir -p ~/.bashrc.d/enabled
+fi
+
+#load configs from .bashrc.d
+reload-bashrc () {
+  for rc in $(ls ~/.bashrc.d/enabled); do source ~/.bashrc.d/enabled/$rc ; done
+}
+
+reload-bashrc'>/etc/skel/.bash_aliases
+# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+mkdir -p /etc/skel/.bashrc.d/enabled
+mkdir -p /etc/skel/.bashrc.d/available
+#-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
+# nvm
+# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+# Install
+cd /opt
+git clone https://github.com/creationix/nvm.git
+# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+# Add to bash sourcing
+echo '#!/bin/bash
+
+#setup nvm
+export NVM_DIR="$HOME/opt/nvm"
+
+# Loads nvm
+[ -z "$(command -v nvm)" ] && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# Loads nvm bash_completion
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+'>/etc/skel/.bashrc.d/available/50-nvm
+#-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
+# Docker and docker-compose
+# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+# Docker CE
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+#To do in a next release : fail if the following sequence don't give '1' as a result.
+#apt-key fingerprint 0EBFCD88 | grep "Key fingerprint = 9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88" | wc -l
+
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+apt-get update
+apt-get install -y docker-ce
+# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+# Docker-compose
+curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+
+# bash completion
+curl -L https://raw.githubusercontent.com/docker/compose/1.21.2/contrib/completion/bash/docker-compose
+#-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
+# Title
+# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+# SubTitle
+#-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 
 ################################################################################
 
