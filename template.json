@@ -84,6 +84,6 @@
         "keep_input_artifact": true,
         "override": {
             "virtualbox": {"vagrantfile_template": "vbox/Vagrantfile"}
-        }
+        },
     }]
 }

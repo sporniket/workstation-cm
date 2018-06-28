@@ -3,3 +3,4 @@
 /packer_cache
 /test-vm
 *.box
+*.tmp
