@@ -50,8 +50,24 @@ update-locale LANG=fr_FR.UTF-8
 # Network toolset
 apt-get install -y wget curl
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
-# VCS toolset
+# Git
 apt-get install -y git
+# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+# Default settings
+echo '[push]
+    default = simple
+[core]
+    editor = gedit --standalone --wait
+    autocrlf = input
+[credential]
+    helper = cache --timeout=36000
+[alias]
+    st = status
+    changelog = log --reverse --format=format:\\'* %C\(bold yellow\)%h%C\(reset\) %b\\'
+    blog = !"git blog-specific"
+
+    blog-specific = log --graph --abbrev-commit --decorate --format=format:\\'%C\(bold blue\)%h%C\(reset\) - %C\(bold green\)\(%ar\)%C\(reset\) %s %C\(dim white\)- %an%C\(reset\)%C\(bold yellow\)%d%C\(reset\)\n%C\(white\)%b%C\(reset\)\\'
+'>~/etc/gitconfig
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 # Java development toolset
 apt-get install -y openjdk-8-jdk
