@@ -55,6 +55,10 @@ apt-get install -y git
 # ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 # Default settings
 wget -O /etc/gitconfig https://raw.githubusercontent.com/sporniket/sporniket-workstation/master/src-deb/1-second-stage/git-extras/etc/gitconfig
+# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+# Git prompt
+wget -O /usr/share/git-extras/git-prompt.sh https://github.com/git/git/raw/master/contrib/completion/git-prompt.sh
+wget -O /etc/skel/.bashrc.d/available/90-git-prompt https://raw.githubusercontent.com/sporniket/sporniket-workstation/master/src-deb/1-second-stage/git-extras/usr/share/git-extras/bashrc.append
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 # Java development toolset
 apt-get install -y openjdk-8-jdk
