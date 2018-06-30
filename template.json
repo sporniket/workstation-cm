@@ -37,7 +37,7 @@
             "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><enter><wait10>",
             "<tab><wait><enter><wait10><wait10>",
             "<tab><wait><tab><wait><enter><wait10>",
-            "Vagrant<tab><wait><tab><wait><tab><wait>vagrant<tab><wait>vagrant<tab><wait><up><wait><tab><wait><tab><wait><enter>",
+            "Vagrant<tab><wait>works<wait>tation<wait>-cm<wait><tab><wait><tab><wait>vagrant<tab><wait>vagrant<tab><wait><up><wait><tab><wait><tab><wait><enter>",
 
             "<wait10><wait10><wait10><wait10><wait10><wait10>",
             "<wait10><wait10><wait10><wait10><wait10><wait10>",
@@ -84,6 +84,6 @@
         "keep_input_artifact": true,
         "override": {
             "virtualbox": {"vagrantfile_template": "vbox/Vagrantfile"}
-        },
+        }
     }]
 }
