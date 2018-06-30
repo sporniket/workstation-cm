@@ -95,7 +95,8 @@ mkdir -p /etc/skel/.bashrc.d/available
 # nvm
 # ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 # Install
-cd /opt
+[ ! -d /etc/skel/opt ] && mkdir -p /etc/skel/opt
+cd /etc/skel/opt
 git clone https://github.com/creationix/nvm.git
 # ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 # Add to bash sourcing
