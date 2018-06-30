@@ -13,6 +13,15 @@ Content
 ## 1. What is **workstation-cm**, and when to use it ?
 **workstation-cm** is a Packer script that create an automated workstation based on Ubuntu taylored to my needs.
 
+### What's new in v0.3.0
+
+* #8 : git prompt
+* #9 : git default configuration
+* #10 : use vagrant-cloud post-processors (upload the box automatically to vagrant cloud)
+* #13 : maven
+* #15 : FIX hostname in /etc/hosts
+* #14 : FIX install nvm in /etc/skel for new user being able to use it at all.
+
 ### What's new in v0.2.0
 
 * #1 : Atom text editor.
@@ -70,7 +79,9 @@ To get the latest available code, one must clone the git repository, build and i
 	cd workstation-cm
 	packer build template.json
 
-> Note : I had use the following command : `PACKER_KEY_INTERVAL=300ms TMPDIR=/var/tmp packer build -force template.json`
+  > Note : I had to define the `VAGRANT_CLOUD_TOKEN` environment variable.
+
+  > Note : I had use the following command : `PACKER_KEY_INTERVAL=300ms TMPDIR=/var/tmp packer build -force template.json`
 
 ## 4. Known issues
 
