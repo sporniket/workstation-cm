@@ -79,11 +79,17 @@
         "script": "provision.sh",
         "execute_command": "echo 'vagrant' | sudo -S sh -c '{{ .Vars }} {{ .Path }}'" }],
 
-    "post-processors": [{
+    "post-processors": [[{
         "type": "vagrant",
         "keep_input_artifact": true,
         "override": {
             "virtualbox": {"vagrantfile_template": "vbox/Vagrantfile"}
         }
-    }]
+    }, {
+        "type": "vagrant-cloud",
+        "box_tag": "sporniket/workstation-cm",
+        "version": "0.3.0",
+        "no_release": "true",
+        "version_description": "try \nmultiline\ndescription"
+    }]]
 }
