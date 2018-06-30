@@ -34,14 +34,31 @@ apt-get full-upgrade -y
 ################################################################################
 
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
+# Bash user default
+# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+echo '#Grant that there is a directory at ~/.bashrc.d/enabled
+if [ ! -d "~/.bashrc.d/enabled" ]; then
+  mkdir -p ~/.bashrc.d/enabled
+fi
+
+#load configs from .bashrc.d
+reload-bashrc () {
+  for rc in $(ls ~/.bashrc.d/enabled); do source ~/.bashrc.d/enabled/$rc ; done
+}
+
+reload-bashrc'>/etc/skel/.bash_aliases
+# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+mkdir -p /etc/skel/.bashrc.d/enabled
+mkdir -p /etc/skel/.bashrc.d/available
+#-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 # French support
 # ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 #language pack
 apt-get install -y $(check-language-support -l fr)
 # ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 #keyboard
-#setxkbmap fr
-#setxkbmap -layout fr -variant bepo
+mv /etc/default/keyboard /etc/default/keyboard.orig
+sed -e 's,"us","fr",' /etc/default/keyboard.orig > /etc/default/keyboard
 # ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 #locale
 locale-gen fr_FR.UTF-8
@@ -57,6 +74,7 @@ apt-get install -y git
 wget -O /etc/gitconfig https://raw.githubusercontent.com/sporniket/sporniket-workstation/master/src-deb/1-second-stage/git-extras/etc/gitconfig
 # ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 # Git prompt
+[ ! -d /usr/share/git-extras ] && mkdir -p /usr/share/git-extras
 wget -O /usr/share/git-extras/git-prompt.sh https://github.com/git/git/raw/master/contrib/completion/git-prompt.sh
 wget -O /etc/skel/.bashrc.d/available/90-git-prompt https://raw.githubusercontent.com/sporniket/sporniket-workstation/master/src-deb/1-second-stage/git-extras/usr/share/git-extras/bashrc.append
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
@@ -74,23 +92,6 @@ apm install editorconfig
 
 #put in user template
 cp -Rf ~/.atom /etc/skel
-#-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
-# Bash user default
-# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
-echo '#Grant that there is a directory at ~/.bashrc.d/enabled
-if [ ! -d "~/.bashrc.d/enabled" ]; then
-  mkdir -p ~/.bashrc.d/enabled
-fi
-
-#load configs from .bashrc.d
-reload-bashrc () {
-  for rc in $(ls ~/.bashrc.d/enabled); do source ~/.bashrc.d/enabled/$rc ; done
-}
-
-reload-bashrc'>/etc/skel/.bash_aliases
-# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
-mkdir -p /etc/skel/.bashrc.d/enabled
-mkdir -p /etc/skel/.bashrc.d/available
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 # nvm
 # ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
