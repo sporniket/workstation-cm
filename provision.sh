@@ -79,7 +79,7 @@ wget -O /usr/share/git-extras/git-prompt.sh https://github.com/git/git/raw/maste
 wget -O /etc/skel/.bashrc.d/available/90-git-prompt https://raw.githubusercontent.com/sporniket/sporniket-workstation/master/src-deb/1-second-stage/git-extras/usr/share/git-extras/bashrc.append
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 # Java development toolset
-apt-get install -y openjdk-8-jdk
+apt-get install -y openjdk-8-jdk maven
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 # Atom text editor
 add-apt-repository ppa:webupd8team/atom
