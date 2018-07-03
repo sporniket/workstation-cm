@@ -87,8 +87,14 @@ apt-get update
 apt-get install -y atom
 # ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 # Preinstall packages
-apm install atom-beautify
-apm install editorconfig
+## general purpose
+apm install duplicate-line-or-selection file-icons highlight-selected hyperclick sort-lines sublime-style-column-selection
+
+## general development
+apm install atom-beautify editorconfig related toggle-quotes docblockr tree-view-copy-relative-path
+
+## javascript/html development
+apm install atom-ternjs atom-wrap-in-tag autocomplete-modules js-hyperclick linter-eslint
 
 #put in user template
 cp -Rf ~/.atom /etc/skel
