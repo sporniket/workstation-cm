@@ -56,13 +56,14 @@ mkdir -p /etc/skel/.bashrc.d/available
 #language pack
 apt-get install -y $(check-language-support -l fr)
 # ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
-#keyboard
-mv /etc/default/keyboard /etc/default/keyboard.orig
-sed -e 's,"us","fr",' /etc/default/keyboard.orig > /etc/default/keyboard
-# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 #locale
 locale-gen fr_FR.UTF-8
 update-locale LANG=fr_FR.UTF-8
+# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+#keyboard
+mv /etc/default/keyboard /etc/default/keyboard.orig
+sed -e 's,"us","fr,fr",' /etc/default/keyboard.orig | sed -e 's,XKBVARIANT="",XKBVARIANT=",bepo",' | sed -e 's,XKBOPTIONS="",XKBOPTIONS="grp:alt_shift_toggle",' > /etc/default/keyboard
+udevadm trigger --subsystem-match=input --action=change
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 # Network toolset
 apt-get install -y wget curl
