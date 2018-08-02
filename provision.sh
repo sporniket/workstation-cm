@@ -81,6 +81,27 @@ wget -O /etc/skel/.bashrc.d/available/90-git-prompt https://raw.githubuserconten
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 # Java development toolset
 apt-get install -y openjdk-8-jdk maven
+# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+# Eclipse and plugins
+ECLIPSE_INSTALL_DIR="/opt"
+[ ! -d "${ECLIPSE_INSTALL_DIR}" ] && mkdir -p ${ECLIPSE_INSTALL_DIR}
+cd ${ECLIPSE_INSTALL_DIR}
+wget -O eclipse.tar.gz 'http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/photon/R/eclipse-jee-photon-R-linux-gtk-x86_64.tar.gz&mirror_id=1'
+tar xzf eclipse.tar.gz
+cd eclipse
+
+# remove 'UseStringDeduplication' option
+mv eclipse.ini eclipse.ini.orig
+cat eclipse.ini.orig | sed -e "s,-XX:+UseStringDeduplication,,"> eclipse.ini
+
+# plugins provisionning
+./eclipse -application org.eclipse.equinox.p2.director -noSplash -repository "http://download.jboss.org/jbosstools/photon/stable/updates/" -installIUs "org.jboss.ide.eclipse.as.feature.feature.group"
+./eclipse -application org.eclipse.equinox.p2.director -noSplash -repository "http://update.eclemma.org/" -installIUs "org.eclipse.eclemma.feature.feature.group"
+./eclipse -application org.eclipse.equinox.p2.director -noSplash -repository "https://checkstyle.github.io/eclipse-cs/update" -installIUs "net.sf.eclipsecs.feature.group"
+./eclipse -application org.eclipse.equinox.p2.director -noSplash -repository "https://spotbugs.github.io/eclipse/" -installIUs "com.github.spotbugs.plugin.eclipse.feature.group"
+./eclipse -application org.eclipse.equinox.p2.director -noSplash -repository "http://ucdetector.sourceforge.net/update" -installIUs "org.ucdetector.feature.feature.group"
+./eclipse -application org.eclipse.equinox.p2.director -noSplash -repository "http://andrei.gmxhome.de/eclipse/" -installIUs "de.loskutov.BytecodeOutline.feature.feature.group"
+
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 # Atom text editor
 add-apt-repository ppa:webupd8team/atom
