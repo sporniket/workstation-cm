@@ -13,6 +13,12 @@ Content
 ## 1. What is **workstation-cm**, and when to use it ?
 **workstation-cm** is a Packer script that create an automated workstation based on Ubuntu taylored to my needs.
 
+### What's new in v0.4.0
+
+* #12 : preinstall some packages for Atom
+* #11 : preinstall Eclipse Photon (4.8) with plugins
+* #16 : fix keyboard layout to french (tentative fix)
+
 ### What's new in v0.3.0
 
 * #8 : git prompt
