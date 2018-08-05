@@ -18,6 +18,8 @@ Content
 * #12 : preinstall some packages for Atom
 * #11 : preinstall Eclipse Photon (4.8) with plugins
 * #16 : fix keyboard layout to french (tentative fix)
+* #20 : use VirtualBox 5.2 to generate the box
+* based on Ubuntu 18.04.1
 
 ### What's new in v0.3.0
 
