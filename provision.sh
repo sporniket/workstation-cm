@@ -34,22 +34,10 @@ apt-get full-upgrade -y
 ################################################################################
 
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
-# Bash user default
+# UI toolset
 # ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
-echo '#Grant that there is a directory at ~/.bashrc.d/enabled
-if [ ! -d "~/.bashrc.d/enabled" ]; then
-  mkdir -p ~/.bashrc.d/enabled
-fi
-
-#load configs from .bashrc.d
-reload-bashrc () {
-  for rc in $(ls ~/.bashrc.d/enabled); do source ~/.bashrc.d/enabled/$rc ; done
-}
-
-reload-bashrc'>/etc/skel/.bash_aliases
-# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
-mkdir -p /etc/skel/.bashrc.d/enabled
-mkdir -p /etc/skel/.bashrc.d/available
+# Gnome Tweaks
+apt-get install -y gnome-tweak-tool
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 # French support
 # ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
@@ -67,6 +55,15 @@ udevadm trigger --subsystem-match=input --action=change
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 # Network toolset
 apt-get install -y wget curl
+#-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
+# Bash user rc files
+# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+# Retrieve rc files setup
+wget -O /etc/skel/.bash_aliases https://raw.githubusercontent.com/sporniket/sporniket-workstation/master/src-deb/1-second-stage/bash-rc/usr/share/bash-rc/bash_aliases
+# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+# Preinit folders
+[ ! -d "/etc/skel/.bashrc.d/available" ] && mkdir -p /etc/skel/.bashrc.d/available
+[ ! -d "/etc/skel/.bashrc.d/enabled" ] && mkdir -p /etc/skel/.bashrc.d/enabled
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 # Git
 apt-get install -y git
@@ -86,7 +83,7 @@ apt-get install -y openjdk-8-jdk maven
 ECLIPSE_INSTALL_DIR="/opt"
 [ ! -d "${ECLIPSE_INSTALL_DIR}" ] && mkdir -p ${ECLIPSE_INSTALL_DIR}
 cd ${ECLIPSE_INSTALL_DIR}
-wget -O eclipse.tar.gz 'http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/photon/R/eclipse-jee-photon-R-linux-gtk-x86_64.tar.gz&mirror_id=1'
+wget -O eclipse.tar.gz 'http://ftp.halifax.rwth-aachen.de/eclipse//technology/epp/downloads/release/2018-12/R/eclipse-jee-2018-12-R-linux-gtk-x86_64.tar.gz'
 tar xzf eclipse.tar.gz
 cd eclipse
 
@@ -97,11 +94,13 @@ cat eclipse.ini.orig | sed -e "s,-XX:+UseStringDeduplication,,"> eclipse.ini
 # plugins provisionning
 ./eclipse -application org.eclipse.equinox.p2.director -noSplash -repository "http://download.jboss.org/jbosstools/photon/stable/updates/" -installIUs "org.jboss.ide.eclipse.as.feature.feature.group"
 ./eclipse -application org.eclipse.equinox.p2.director -noSplash -repository "http://update.eclemma.org/" -installIUs "org.eclipse.eclemma.feature.feature.group"
-./eclipse -application org.eclipse.equinox.p2.director -noSplash -repository "https://checkstyle.github.io/eclipse-cs/update" -installIUs "net.sf.eclipsecs.feature.group"
+./eclipse -application org.eclipse.equinox.p2.director -noSplash -repository "https://build.se.informatik.uni-kiel.de/eus/qa/snapshot/" -installIUs "qa.eclipse.plugin.pmd.feature.group,qa.eclipse.plugin.checkstyle.feature.group"
 ./eclipse -application org.eclipse.equinox.p2.director -noSplash -repository "https://spotbugs.github.io/eclipse/" -installIUs "com.github.spotbugs.plugin.eclipse.feature.group"
 ./eclipse -application org.eclipse.equinox.p2.director -noSplash -repository "http://ucdetector.sourceforge.net/update" -installIUs "org.ucdetector.feature.feature.group"
 ./eclipse -application org.eclipse.equinox.p2.director -noSplash -repository "http://andrei.gmxhome.de/eclipse/" -installIUs "de.loskutov.BytecodeOutline.feature.feature.group"
 
+# Desktop shortcut
+wget -O /usr/share/applications/workstation-cm--eclipse.desktop https://raw.githubusercontent.com/sporniket/sporniket-workstation/master/src-deb/1-second-stage/eclipse/usr/share/applications/eclipse-from-download.desktop
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 # Atom text editor
 add-apt-repository ppa:webupd8team/atom
@@ -160,6 +159,12 @@ chmod +x /usr/local/bin/docker-compose
 
 # bash completion
 curl -L https://raw.githubusercontent.com/docker/compose/1.21.2/contrib/completion/bash/docker-compose
+#-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
+# Backup tools
+# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+# Sporniket Backup
+wget -O /usr/bin/sporniket-backup https://raw.githubusercontent.com/sporniket/sporniket-backup/master/sporniket-backup.sh
+chmod 755 /usr/bin/sporniket-backup
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 # Title
 # ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
