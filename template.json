@@ -49,7 +49,8 @@
             "<enter><wait10><enter>",
 
             "<wait10><wait10><wait10><wait10><wait10><wait10>",
-            "<leftCtrlOn><leftAltOn>t<leftAltOff><leftCtrlOff><wait10>",
+            "<wait10><wait10><wait10><wait10><wait10><wait10>",
+            "<leftCtrlOn><leftAltOn>t<leftAltOff><leftCtrlOff><wait10><wait10><wait10>",
 
             "sudo<wait><spacebar><wait>-s<enter><wait>vagrant<wait><enter><wait10>",
             "rm<wait><spacebar><wait>-Rf<wait><spacebar><wait>/etc<wait>/systemd<wait>/system<wait>/apt-*<wait><enter><wait10>",
@@ -63,7 +64,7 @@
             "<wait10><wait10><wait10><wait10><wait10><wait10>",
             ""
         ],
-        "ssh_timeout": "1m",
+        "ssh_timeout": "2m",
         "ssh_username": "vagrant",
         "ssh_password": "vagrant",
         "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
@@ -88,7 +89,7 @@
     }, {
         "type": "vagrant-cloud",
         "box_tag": "sporniket/workstation-cm",
-        "version": "0.4.0",
+        "version": "0.5.0",
         "no_release": "true",
         "version_description": "Edit me before release"
     }]]
