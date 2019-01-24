@@ -1,6 +1,12 @@
+# Packer working folders
 /output-virtualbox-iso
 /output-vmware-iso
 /packer_cache
 /test-vm
+
+# Box files
 *.box
+
+# Temporary stuff
 *.tmp
+/tmp
