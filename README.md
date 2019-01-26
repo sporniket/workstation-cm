@@ -13,6 +13,14 @@ Content
 ## 1. What is **workstation-cm**, and when to use it ?
 **workstation-cm** is a Packer script that create an automated workstation based on Ubuntu taylored to my needs.
 
+### What's new in v0.5.0
+
+* #21 : preinstall gnome tweaks
+* #22 : Eclipse desktop descriptor
+* #23 : Preinstall backup script
+* #24 : Download bash_aliases instead of inline generation
+* #25 : Change eclipse version and replace checkstyle plugin
+
 ### What's new in v0.4.0
 
 * #12 : preinstall some packages for Atom
@@ -95,7 +103,7 @@ To get the latest available code, one must clone the git repository, build and i
 
 See the [project issues](https://github.com/sporniket/workstation-cm/issues) page.
 
-The boot command sequence is timed after my setup : a Linux on SSD. Thus the timing are quite shorts. In the future, I plan to make these timing configurable to get an taylored script.
+The boot command sequence is timed after my setup : a Linux on SSD. Thus the timing are quite shorts. In the future, I plan to make these timing configurable to get a taylored script.
 
 ## 5. Miscellanous
 
