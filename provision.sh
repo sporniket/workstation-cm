@@ -115,7 +115,7 @@ apm install duplicate-line-or-selection file-icons highlight-selected hyperclick
 apm install atom-beautify editorconfig related toggle-quotes docblockr tree-view-copy-relative-path
 
 ## javascript/html development
-apm install atom-ternjs atom-wrap-in-tag autocomplete-modules linter-eslint
+apm install atom-ternjs atom-wrap-in-tag autocomplete-modules linter-eslint atom-ide-ui ide-typescript
 
 #put in user template
 cp -Rf ~/.atom /etc/skel
