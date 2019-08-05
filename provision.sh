@@ -21,6 +21,8 @@ echo root:vagrant | chpasswd
 echo '\nvagrant ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 
 
+# Do not bother with interactive UI while upgrading
+export DEBIAN_FRONTEND=noninteractive
 
 # Update/upgrade
 apt-get update
@@ -174,8 +176,8 @@ chmod 755 /usr/bin/sporniket-backup
 ################################################################################
 
 # Delete stuff
-apt-get --purge autoremove
-apt-get clean
+apt-get --purge -y autoremove
+apt-get -y clean
 
 rm -rf /var/log/*
 rm -rf /home/vagrant/.cache/*
