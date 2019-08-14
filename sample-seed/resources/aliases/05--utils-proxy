@@ -1,0 +1,89 @@
+#/bin/bash
+# [EXPERIMENTAL]
+# Utilities to setup/clear proxy settings. To be sourced from bash.
+
+# Print current env settings
+proxy-echo () {
+  echo -e "${LOG_INFO} proxy http        => ${HTTP_PROXY}"
+  echo -e "${LOG_INFO} proxy https       => ${HTTPS_PROXY}"
+  echo -e "${LOG_INFO} proxy exceptions  => ${NO_PROXY}"
+}
+
+proxy-setup () {
+  proxy-setup-home "${HOME}" "$1" "$2"
+}
+
+proxy-clear () {
+  proxy-clear "${HOME}"
+}
+
+# Prepare next alias reload with settings
+# 1 -- home directory, should be ${HOME}
+# 2 -- http_proxy value, will be copied into https_proxy
+# 3 -- no_proxy value
+proxy-setup-home () {
+  HOME_PROXY_SETUP="${1}/.bashrc.d/available/10--proxy"
+
+  echo -e "\nexport http_proxy=\"${2}\"\n" > ${HOME_PROXY_SETUP}
+  echo -e "\nexport https_proxy=\"${http_proxy}\"\n" >> ${HOME_PROXY_SETUP}
+  echo -e "\nexport no_proxy=\"${3}\"\n" >> ${HOME_PROXY_SETUP}
+  echo -e "\nexport HTTP_PROXY=\"${http_proxy}\"\n" >> ${HOME_PROXY_SETUP}
+  echo -e "\nexport HTTPS_PROXY=\"${http_proxy}\"\n" >> ${HOME_PROXY_SETUP}
+  echo -e "\nexport NO_PROXY=\"${no_proxy}\"\n" >> ${HOME_PROXY_SETUP}
+
+  echo -e "\nproxy-echo\n"
+}
+
+
+# Prepare next alias reload with cleared settings
+# 1 -- home directory, should be ${HOME}
+proxy-clear-home () {
+  HOME_PROXY_SETUP="${1}/.bashrc.d/available/10--proxy"
+
+  echo -e "\nunset http_proxy\n" > ${HOME_PROXY_SETUP}
+  echo -e "\nunset https_proxy\n" >> ${HOME_PROXY_SETUP}
+  echo -e "\nunset no_proxy\n" >> ${HOME_PROXY_SETUP}
+  echo -e "\nunset HTTP_PROXY\n" >> ${HOME_PROXY_SETUP}
+  echo -e "\nunset HTTPS_PROXY\n" >> ${HOME_PROXY_SETUP}
+  echo -e "\nunset NO_PROXY\n" >> ${HOME_PROXY_SETUP}
+
+  echo -e "\nproxy-echo\n"
+}
+
+# Setup docker with proxy settings
+# 1 -- http_proxy value, will be copied into https_proxy
+# 2 -- no_proxy value
+proxy-setup-docker () {
+  # ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+  # Overwrite proxy settings default
+  sudo echo -e "\nexport http_proxy=\"${1}\"\n" > /etc/default/docker
+  sudo echo -e "\nexport https_proxy=\"${1}\"\n" >> /etc/default/docker
+  # ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+  # Proxy settings systemd
+  [ ! -d /etc/systemd/system/docker.service.d ] && mkdir -p /etc/systemd/system/docker.service.d
+  cd /etc/systemd/system/docker.service.d
+  sudo echo "[Service]" > http-proxy.conf
+  sudo echo -e "Environment=\"HTTP_PROXY=${1}\"" >> http-proxy.conf
+  sudo echo "[Service]" > https-proxy.conf
+  sudo echo -e "Environment=\"HTTPS_PROXY=${1}\"" >> https-proxy.conf
+  sudo echo "[Service]" > no-proxy.conf
+  sudo echo -e "Environment=\"NO_PROXY=${2}\"" >> no-proxy.conf
+  sudo systemctl daemon-reload
+  sudo systemctl restart docker
+}
+
+# Setup docker with no proxy (i.e remove files)
+proxy-clear-docker () {
+  # ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+  # Remove proxy settings default -- FIXME replace with your reference file instead
+  [ -f /etc/default/docker ] && sudo rm /etc/default/docker
+  # ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+  # Remove proxy settings systemd
+  [ ! -d /etc/systemd/system/docker.service.d ] && mkdir -p /etc/systemd/system/docker.service.d
+  cd /etc/systemd/system/docker.service.d
+  [ -f http-proxy.conf ] && sudo rm http-proxy.conf
+  [ -f https-proxy.conf ] && sudo rm https-proxy.conf
+  [ -f no-proxy.conf ] && sudo rm no-proxy.conf
+  sudo systemctl daemon-reload
+  sudo systemctl restart docker
+}
