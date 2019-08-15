@@ -89,7 +89,7 @@
     }, {
         "type": "vagrant-cloud",
         "box_tag": "sporniket/workstation-cm",
-        "version": "0.6.0",
+        "version": "0.7.0",
         "no_release": "true",
         "version_description": "Edit me before release"
     }]]
