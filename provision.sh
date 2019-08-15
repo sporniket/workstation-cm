@@ -58,6 +58,9 @@ udevadm trigger --subsystem-match=input --action=change
 # Network toolset
 apt-get install -y wget curl
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
+# Apt toolset
+apt-get install -y apt-transport-https
+#-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 # Bash user rc files
 # ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 # Retrieve rc files setup
@@ -105,7 +108,8 @@ cat eclipse.ini.orig | sed -e "s,-XX:+UseStringDeduplication,,"> eclipse.ini
 wget -O /usr/share/applications/workstation-cm--eclipse.desktop https://raw.githubusercontent.com/sporniket/sporniket-workstation/master/src-deb/1-second-stage/eclipse/usr/share/applications/eclipse-from-download.desktop
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 # Atom text editor
-add-apt-repository ppa:webupd8team/atom
+curl -fsSL https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
+add-apt-repository "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main"
 apt-get update
 apt-get install -y atom
 # ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
