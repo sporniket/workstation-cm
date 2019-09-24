@@ -13,6 +13,11 @@ Content
 ## 1. What is **workstation-cm**, and when to use it ?
 **workstation-cm** is a Packer script that create an automated workstation based on Ubuntu taylored to my needs.
 
+### What's new in v0.8.0
+
+* fixed #28 : Preinstall GnuPG2
+* fixed #31 : Gedit as git editor does not support the '--wait' with '--standalone' anymore
+
 ### What's new in v0.7.0
 
 * upgraded to ubuntu 18.04.3
