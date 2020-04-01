@@ -56,7 +56,7 @@ sed -e 's,"us","fr,fr",' /etc/default/keyboard.orig | sed -e 's,XKBVARIANT="",XK
 udevadm trigger --subsystem-match=input --action=change
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 # Network toolset
-apt-get install -y wget curl gnupg2
+apt-get install -y wget curl gnupg2 cntlm
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 # Apt toolset
 apt-get install -y apt-transport-https
