@@ -174,6 +174,10 @@ curl -L https://raw.githubusercontent.com/docker/compose/1.21.2/contrib/completi
 wget -O /usr/bin/sporniket-backup https://raw.githubusercontent.com/sporniket/sporniket-backup/master/sporniket-backup.sh
 chmod 755 /usr/bin/sporniket-backup
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
+# Augment file watcher number
+# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+echo "fs.inotify.max_user_watches=32000" >> /etc/sysctl.conf
+#-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 # Title
 # ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 # SubTitle
