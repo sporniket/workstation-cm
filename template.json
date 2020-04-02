@@ -11,7 +11,7 @@
     "builders": [{
         "type": "virtualbox-iso",
         "guest_os_type": "Ubuntu_64",
-        "iso_url": "http://releases.ubuntu.com/18.04/ubuntu-18.04.3-desktop-amd64.iso",
+        "iso_url": "http://releases.ubuntu.com/18.04/ubuntu-18.04.4-desktop-amd64.iso",
         "iso_checksum_url": "http://releases.ubuntu.com/18.04/MD5SUMS",
         "iso_checksum_type": "md5",
         "vboxmanage": [
