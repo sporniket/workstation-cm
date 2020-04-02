@@ -98,7 +98,7 @@ cat eclipse.ini.orig | sed -e "s,-XX:+UseStringDeduplication,,"> eclipse.ini
 
 # plugins provisionning
 ./eclipse -application org.eclipse.equinox.p2.director -noSplash -repository "http://download.jboss.org/jbosstools/photon/stable/updates/" -installIUs "org.jboss.ide.eclipse.as.feature.feature.group"
-./eclipse -application org.eclipse.equinox.p2.director -noSplash -repository "http://update.eclemma.org/" -installIUs "org.eclipse.eclemma.feature.feature.group"
+#./eclipse -application org.eclipse.equinox.p2.director -noSplash -repository "http://update.eclemma.org/" -installIUs "org.eclipse.eclemma.feature.feature.group"
 ./eclipse -application org.eclipse.equinox.p2.director -noSplash -repository "https://build.se.informatik.uni-kiel.de/eus/qa/snapshot/" -installIUs "qa.eclipse.plugin.pmd.feature.group,qa.eclipse.plugin.checkstyle.feature.group"
 ./eclipse -application org.eclipse.equinox.p2.director -noSplash -repository "https://spotbugs.github.io/eclipse/" -installIUs "com.github.spotbugs.plugin.eclipse.feature.group"
 ./eclipse -application org.eclipse.equinox.p2.director -noSplash -repository "http://ucdetector.sourceforge.net/update" -installIUs "org.ucdetector.feature.feature.group"
