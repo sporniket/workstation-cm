@@ -13,6 +13,14 @@ Content
 ## 1. What is **workstation-cm**, and when to use it ?
 **workstation-cm** is a Packer script that create an automated workstation based on Ubuntu taylored to my needs.
 
+### What's new in v0.9.0
+
+* upgraded to ubuntu 18.04.4
+* fixed #32 : preinstall cntlm
+* fixed #33 : augment the number of watchers (for live-reload when developping html -angular, react,...- applications)
+* fixed #34 : preinstall eclipse plugins YAML editor and DBeaver
+* fixed #35 : upgraded Eclipse to 2020-03
+
 ### What's new in v0.8.0
 
 * fixed #28 : Preinstall GnuPG2
