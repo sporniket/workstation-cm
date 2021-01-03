@@ -103,7 +103,6 @@ cat eclipse.ini.orig | sed -e "s,-XX:+UseStringDeduplication,,"> eclipse.ini
 ./eclipse -application org.eclipse.equinox.p2.director -noSplash -repository "https://spotbugs.github.io/eclipse/" -installIUs "com.github.spotbugs.plugin.eclipse.feature.group"
 ./eclipse -application org.eclipse.equinox.p2.director -noSplash -repository "http://ucdetector.sourceforge.net/update" -installIUs "org.ucdetector.feature.feature.group"
 ./eclipse -application org.eclipse.equinox.p2.director -noSplash -repository "http://andrei.gmxhome.de/eclipse/" -installIUs "de.loskutov.BytecodeOutline.feature.feature.group"
-./eclipse -application org.eclipse.equinox.p2.director -noSplash -repository "https://dl.bintray.com/de-jcup/yamleditor" -installIUs "de.jcup.yamleditor.feature.group"
 
 # Desktop shortcut
 wget -O /usr/share/applications/workstation-cm--eclipse.desktop https://raw.githubusercontent.com/sporniket/sporniket-workstation/master/src-deb/1-second-stage/eclipse/usr/share/applications/eclipse-from-download.desktop
