@@ -88,7 +88,7 @@ apt-get install -y openjdk-8-jdk maven
 ECLIPSE_INSTALL_DIR="/opt"
 [ ! -d "${ECLIPSE_INSTALL_DIR}" ] && mkdir -p ${ECLIPSE_INSTALL_DIR}
 cd ${ECLIPSE_INSTALL_DIR}
-wget -O eclipse.tar.gz 'http://ftp.halifax.rwth-aachen.de/eclipse/technology/epp/downloads/release/2020-03/R/eclipse-jee-2020-03-R-incubation-linux-gtk-x86_64.tar.gz'
+wget -O eclipse.tar.gz 'http://ftp.halifax.rwth-aachen.de/eclipse/technology/epp/downloads/release/2020-06/R/eclipse-jee-2020-06-R-linux-gtk-x86_64.tar.gz'
 tar xzf eclipse.tar.gz
 cd eclipse
 
