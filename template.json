@@ -64,7 +64,7 @@
             "<wait10><wait10><wait10><wait10><wait10><wait10>",
             ""
         ],
-        "ssh_timeout": "2m",
+        "ssh_timeout": "20m",
         "ssh_username": "vagrant",
         "ssh_password": "vagrant",
         "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
