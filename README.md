@@ -13,6 +13,15 @@ Content
 ## 1. What is **workstation-cm**, and when to use it ?
 **workstation-cm** is a Packer script that create an automated workstation based on Ubuntu taylored to my needs.
 
+### What's new in v0.10.0
+
+* upgraded to ubuntu 18.04.5
+* resolves #42 : Migrate to Eclipse 2020.06
+* resolves #43 : Eclipse : BytecodeOutline not available anymore
+* resolves #39 : Atom editor : redo the html/javascript development plugin set
+* resolves #38 : Eclipse : stop pre-installing yaml editor
+* resolves #37 : Eclipse : stop pre-install dbeaver
+
 ### What's new in v0.9.0
 
 * upgraded to ubuntu 18.04.4
