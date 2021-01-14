@@ -129,6 +129,14 @@ apm install atom-ide-ui ide-typescript
 #put in user template
 cp -Rf ~/.atom /etc/skel
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
+# VsCode text editor
+cd /tmp
+wget -O vscode.deb 'https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64'
+dpkg -i vscode.deb
+# ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
+# Preinstall packages
+## TO BE DETERMINED
+#-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 # nvm
 # ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 # Install
