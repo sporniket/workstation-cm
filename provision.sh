@@ -108,10 +108,13 @@ cat eclipse.ini.orig | sed -e "s,-XX:+UseStringDeduplication,,"> eclipse.ini
 wget -O /usr/share/applications/workstation-cm--eclipse.desktop https://raw.githubusercontent.com/sporniket/sporniket-workstation/master/src-deb/1-second-stage/eclipse/usr/share/applications/eclipse-from-download.desktop
 #-====-====-====-====-====-====-====-====-====-====-====-====-====-====-====
 # Atom text editor
-curl -fsSL https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
-add-apt-repository "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main"
-apt-get update
-apt-get install -y atom
+# curl -fsSL https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
+# add-apt-repository "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main"
+# apt-get update
+# apt-get install -y atom
+cd /tmp
+wget -O atom.deb 'https://atom.io/download/deb'
+dpkg -i atom.deb
 # ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
 # Preinstall packages
 ## general purpose
