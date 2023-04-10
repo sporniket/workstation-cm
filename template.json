@@ -11,8 +11,8 @@
     "builders": [{
         "type": "virtualbox-iso",
         "guest_os_type": "Ubuntu_64",
-        "iso_url": "http://releases.ubuntu.com/18.04/ubuntu-18.04.5-desktop-amd64.iso",
-        "iso_checksum_url": "http://releases.ubuntu.com/18.04/SHA256SUMS",
+        "iso_url": "https://releases.ubuntu.com/22.04.2/ubuntu-22.04.2-desktop-amd64.iso",
+        "iso_checksum_url": "https://releases.ubuntu.com/22.04.2/SHA256SUMS",
         "iso_checksum_type": "sha256",
         "vboxmanage": [
             ["modifyvm", "{{.Name}}",
@@ -20,42 +20,30 @@
              "--memory", "{{user `memory_mb`}}",
              "--vram", "{{user `vbox_videomem_mb`}}"]
         ],
-        "boot_wait": "5s",
+        "boot_wait": "90s",
         "boot_command": [
-          "<bs><wait><bs><wait><bs><wait><bs><wait><bs><wait><enter><wait>",
-
-          "<f6><wait><enter><wait><esc><wait>",
-          "<down><wait>",
-          "time/zone=Europe/Paris<spacebar><wait>",
-          "<enter>",
-          "<wait10><wait10>",
-
-            "<wait10><tab><wait><enter><wait10>",
-
-            "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><enter><wait10>",
-            "<tab><wait><spacebar><tab><wait><tab><wait><tab><wait><tab><wait><enter><wait10>",
-            "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><enter><wait10>",
-            "<tab><wait><enter><wait10><wait10>",
             "<tab><wait><tab><wait><enter><wait10>",
-            "Vagrant<tab><wait>works<wait>tation<wait>-cm<wait><tab><wait><tab><wait>vagrant<tab><wait>vagrant<tab><wait><up><wait><tab><wait><tab><wait><enter>",
+            "<tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><tab><wait><enter><wait10>",
+            "<tab><wait><spacebar><wait><tab><wait><tab><wait><tab><wait><tab><wait><enter><wait10>",
+            "<tab><wait><tab><wait><tab><wait><tab><wait><enter><wait10><tab><wait><enter><wait10>",
+            "<tab><wait><tab><wait><tab><wait><enter><wait10>",
 
-            "<wait10><wait10><wait10><wait10><wait10><wait10>",
-            "<wait10><wait10><wait10><wait10><wait10><wait10>",
-            "<wait10><wait10><wait10><wait10><wait10><wait10>",
-            "<wait10><wait10><wait10><wait10><wait10><wait10>",
-            "<wait10><wait10><wait10><wait10><wait10><wait10>",
-            "<wait10><wait10><wait10><wait10><wait10><wait10>",
+            "Vagrant<tab><wait>works<wait>tation<wait>-cm<wait><tab><wait>vagrant<tab><wait>vagrant<tab><wait>vagrant<tab><wait><up><wait><tab><wait><tab><wait><enter>",
 
-            "<enter><wait10><enter>",
+            "<wait15m>",
 
-            "<wait10><wait10><wait10><wait10><wait10><wait10>",
-            "<wait10><wait10><wait10><wait10><wait10><wait10>",
+            "<tab><wait><enter><wait10><wait10><wait10><enter>",
+
+            "<wait5m>",
             "<leftCtrlOn><leftAltOn>t<leftAltOff><leftCtrlOff><wait10><wait10><wait10>",
 
             "sudo<wait><spacebar><wait>-s<enter><wait>vagrant<wait><enter><wait10>",
             "rm<wait><spacebar><wait>-Rf<wait><spacebar><wait>/etc<wait>/systemd<wait>/system<wait>/apt-*<wait><enter><wait10>",
             "reboot<wait><enter>",
 
+            "<wait10><wait10><wait10><wait10><wait10><wait10>",
+            "<wait10><wait10><wait10><wait10><wait10><wait10>",
+            "<wait10><wait10><wait10><wait10><wait10><wait10>",
             "<wait10><wait10><wait10><wait10><wait10><wait10>",
             "<leftCtrlOn><leftAltOn>t<leftAltOff><leftCtrlOff><wait10>",
             "sudo<wait><spacebar><wait>-s<enter><wait>vagrant<wait><enter><wait10>",
@@ -64,7 +52,7 @@
             "<wait10><wait10><wait10><wait10><wait10><wait10>",
             ""
         ],
-        "ssh_timeout": "20m",
+        "ssh_timeout": "30m",
         "ssh_username": "vagrant",
         "ssh_password": "vagrant",
         "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
