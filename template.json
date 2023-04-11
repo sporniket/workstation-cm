@@ -12,8 +12,8 @@
         "type": "virtualbox-iso",
         "guest_os_type": "Ubuntu_64",
         "iso_url": "https://releases.ubuntu.com/22.04.2/ubuntu-22.04.2-desktop-amd64.iso",
-        "iso_checksum_url": "https://releases.ubuntu.com/22.04.2/SHA256SUMS",
-        "iso_checksum_type": "sha256",
+        "iso_checksum": "file:https://releases.ubuntu.com/22.04.2/SHA256SUMS",
+        "nested_virt": true,
         "vboxmanage": [
             ["modifyvm", "{{.Name}}",
              "--cpus", "{{user `cpus`}}",

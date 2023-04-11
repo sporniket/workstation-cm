@@ -133,7 +133,7 @@ To get the latest available code, one must clone the git repository, build and i
 
   > Note : I had to define the `VAGRANT_CLOUD_TOKEN` environment variable.
 
-  > Note : I had use the following command : `PACKER_KEY_INTERVAL=300ms TMPDIR=/var/tmp packer build -force template.json`
+  > Note : I had use the following command : `PACKER_KEY_INTERVAL=300ms TMPDIR=./tmpPacker PACKER_CACHE_DIR=./packer_cache packer build -force template.json`
 
 ## 4. Known issues
 
